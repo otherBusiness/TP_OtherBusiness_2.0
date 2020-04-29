@@ -6,7 +6,11 @@
 	<persistence-unit name="OtherBusiness"
 		transaction-type="JTA">
 		<jta-data-source>java:/otherBusinessDS</jta-data-source>
-		<class>pe.edu.upc.entity.Student</class>
+    <!-- … INICIO __ aqui las clases creadas de entity ______________________… -->	
+	<class>pe.edu.upc.entity.Student</class>
+	<class>pe.edu.upc.entity.Campus</class>
+		
+	<!-- … FIN __ aqui las clases creadas de entity __________________________… -->		
 		<properties>
 			<property
 				name="javax.persistence.schema-generation.database.action"
