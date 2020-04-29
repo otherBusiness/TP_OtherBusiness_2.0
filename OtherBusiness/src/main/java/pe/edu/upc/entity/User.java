@@ -32,7 +32,7 @@ public class User implements Serializable{
 	
 	private int dniUser;
 	private int phoneUser;
-	
+
 	public User() {
 		super();
 		// TODO Auto-generated constructor stub
