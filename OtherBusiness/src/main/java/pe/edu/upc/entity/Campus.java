@@ -9,11 +9,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-
 @Entity
 @Table(name = "Campus")
-public class Campus implements Serializable
-{
+public class Campus implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,21 +19,21 @@ public class Campus implements Serializable
 
 	@Column(name = "nameCampus", nullable = false, length = 50)
 	private String nameCampus;
-	
-	//constructor vacio
+
+	// constructor vacio
 	public Campus() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	//constructor inicializado
+
+	// constructor inicializado
 	public Campus(int idCampus, String nameCampus) {
 		super();
 		this.idCampus = idCampus;
 		this.nameCampus = nameCampus;
 	}
 
-	
-	//get y set
+	// get y set
 	public int getIdCampus() {
 		return idCampus;
 	}
@@ -51,11 +49,4 @@ public class Campus implements Serializable
 	public void setNameCampus(String nameCampus) {
 		this.nameCampus = nameCampus;
 	}
-
-	
-	
-	
 }
-
-	
-

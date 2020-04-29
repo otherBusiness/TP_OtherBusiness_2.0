@@ -9,7 +9,11 @@
     <!-- … INICIO __ aqui las clases creadas de entity ______________________… -->	
 	<class>pe.edu.upc.entity.Student</class>
 	<class>pe.edu.upc.entity.Campus</class>
-		
+	<class>pe.edu.upc.entity.Category</class>
+	<class>pe.edu.upc.entity.CreditCard</class>
+	<class>pe.edu.upc.entity.Investor</class>
+	<class>pe.edu.upc.entity.User</class>
+	<class>pe.edu.upc.entity.Project</class>
 	<!-- … FIN __ aqui las clases creadas de entity __________________________… -->		
 		<properties>
 			<property
