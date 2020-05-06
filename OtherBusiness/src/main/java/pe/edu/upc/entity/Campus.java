@@ -49,4 +49,34 @@ public class Campus implements Serializable {
 	public void setNameCampus(String nameCampus) {
 		this.nameCampus = nameCampus;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + idCampus;
+		result = prime * result + ((nameCampus == null) ? 0 : nameCampus.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Campus other = (Campus) obj;
+		if (idCampus != other.idCampus)
+			return false;
+		if (nameCampus == null) {
+			if (other.nameCampus != null)
+				return false;
+		} else if (!nameCampus.equals(other.nameCampus))
+			return false;
+		return true;
+	}
+	
+	
 }
