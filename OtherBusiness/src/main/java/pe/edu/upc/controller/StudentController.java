@@ -9,7 +9,9 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import pe.edu.upc.entity.Campus;
 import pe.edu.upc.entity.Student;
+import pe.edu.upc.serviceinterface.IcampusService;
 import pe.edu.upc.serviceinterface.IstudentService;
 
 @Named
@@ -25,16 +27,25 @@ public class StudentController implements Serializable {
 	@Inject
 	private IstudentService iService;
 	
+	@Inject
+	private IcampusService cService;
+	
 	private Student i;
+	private Campus c;
 	
 	List<Student> listaStudent;
+	List<Campus> listaCampus;
 
 	// constructor
 	@PostConstruct
 	public void init() {
 		this.listaStudent = new ArrayList<Student>();
+		this.listaCampus=new ArrayList<Campus>();
 		this.i = new Student();
+		this.c= new Campus();
 		this.list();
+		this.listCampus();
+		
 
 	}
 
@@ -60,6 +71,14 @@ public class StudentController implements Serializable {
 			listaStudent = iService.list();
 		} catch (Exception e) {
 			e.getMessage();
+		}
+	}
+	
+	public void listCampus() {
+		try {
+			listaCampus = cService.list();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
 		}
 	}
 	
@@ -94,4 +113,29 @@ public class StudentController implements Serializable {
 		this.listaStudent = listaStudent;
 	}
 
+	public IcampusService getcService() {
+		return cService;
+	}
+
+	public void setcService(IcampusService cService) {
+		this.cService = cService;
+	}
+
+	public Campus getC() {
+		return c;
+	}
+
+	public void setC(Campus c) {
+		this.c = c;
+	}
+
+	public List<Campus> getListaCampus() {
+		return listaCampus;
+	}
+
+	public void setListaCampus(List<Campus> listaCampus) {
+		this.listaCampus = listaCampus;
+	}
+
+	
 }

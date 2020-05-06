@@ -38,6 +38,9 @@
 							<p:column headerText="E-mail Estudiante" sortBy="#{stu.emailStudent}">
 								<h:outputText value="#{stu.emailStudent}" />
 							</p:column>
+							<p:column headerText="Campus" sortBy="#{stu.campus.nameCampus}">
+								<h:outputText value="#{stu.campus.nameCampus}" />
+							</p:column>
 							
 						</p:dataTable>
 					</div>

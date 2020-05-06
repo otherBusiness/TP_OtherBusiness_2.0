@@ -36,6 +36,15 @@
 			<p:inputText autocomplete="off" id="emailStudent"
 				styleClass="form-control" value="#{studentController.i.emailStudent}"
 				maxlength="30" required="true" />
+				
+				<p:outputLabel for="cboCampus" value="Campus" />
+			<p:selectOneMenu id="cboCampus"
+				value="#{studentController.i.campus}"
+				converter="omnifaces.SelectItemsConverter">
+				<f:selectItems value="#{studentController.listaCampus}"
+					var="m" itemLabel="#{m.nameCampus}" itemValue="#{m}" />
+			</p:selectOneMenu>
+			<br />
 
 
 
