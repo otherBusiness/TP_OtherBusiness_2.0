@@ -36,7 +36,7 @@ public class ProjectController implements Serializable {
 	}
 
 	// Metodos
-	public String newInfectious() {
+	public String newProject() {
 		this.setI(new Project());
 		return "project.xhtml";
 	}
@@ -44,7 +44,7 @@ public class ProjectController implements Serializable {
 	public void insert() {
 		try {
 			iService.insert(i);
-			cleanInfectiousAgent();
+			cleanProject();
 			this.list();
 		} catch (Exception e) {
 			e.getMessage();
@@ -59,11 +59,18 @@ public class ProjectController implements Serializable {
 		}
 	}
 
-	public void cleanInfectiousAgent() {
+	public void cleanProject() {
 		this.init();
 	}
 
-	// getters y setters
+	public IprojectService getiService() {
+		return iService;
+	}
+
+	public void setiService(IprojectService iService) {
+		this.iService = iService;
+	}
+
 	public Project getI() {
 		return i;
 	}
@@ -72,12 +79,15 @@ public class ProjectController implements Serializable {
 		this.i = i;
 	}
 
-	public List<Project> getListaInfectiousAgent() {
+	public List<Project> getListaProject() {
 		return listaProject;
 	}
 
-	public void setListaInfectiousAgent(List<Project> listaInfectiousAgent) {
-		this.listaProject = listaInfectiousAgent;
+	public void setListaProject(List<Project> listaProject) {
+		this.listaProject = listaProject;
 	}
+
+	// getters y setters
+	
 
 }

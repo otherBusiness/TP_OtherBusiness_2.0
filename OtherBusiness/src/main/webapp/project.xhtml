@@ -21,30 +21,30 @@
 
 
 			<h:outputLabel for="idProject" value="Código"
-				styleClass="control-label" />
+				styleClass="control-label"/>
 			<p:inputText autocomplete="off" id="idProject"
 				styleClass="form-control" value="#{projectController.i.idProject}"
-				required="true" />
+				required="true"/>
 				
 				
 			<h:outputLabel for="nameProject" value="Nombre del proyecto"
-				styleClass="control-label" />
+				styleClass="control-label"/>
 				
 			<p:inputText autocomplete="off" id="nameProject"
 				styleClass="form-control" value="#{projectController.i.nameProject}"
-				maxlength="30" required="true" />
+				maxlength="30" required="true"/>
 				
 				
 			<h:outputLabel for="nameGroupProject" value="Nombre del grupo de proyecto"
-				styleClass="control-label" />
+				styleClass="control-label"/>
 				
 			<p:inputText autocomplete="off" id="nameGroupProject"
 				styleClass="form-control" value="#{projectController.i.nameGroupProject}"
-				maxlength="30" required="true" />
+				maxlength="30" required="true"/>
 
 
 			<h:outputLabel for="descriptionProject" value="Description del proyecto"
-				styleClass="control-label" />
+				styleClass="control-label"/>
 				
 			<p:inputText autocomplete="off" id="descriptionProject"
 				styleClass="form-control" value="#{projectController.i.descriptionProject}"
@@ -62,23 +62,20 @@
 			
 			
 			<h:outputLabel for="startDateProject" value="Fecha de inicio del proyecto"
-				styleClass="control-label" />
+				styleClass="control-label"/>
 			
 			<p:calendar id="startDateProject" pattern="dd/MM/yyyy"
 				value="#{projectController.i.startDateProject}"
 				showOn="button" timeZone="UTC" required="true">
 			</p:calendar>
-			
 			<br />
-			
 			<h:outputLabel for="finishDateProject" value="Fecha de fin del proyecto"
-				styleClass="control-label" />
+				styleClass="control-label"/>
 					
 			<p:calendar id="finishDateProject" pattern="dd/MM/yyyy"
 				value="#{projectController.i.finishDateProject}"
 				showOn="button" timeZone="UTC" required="true">
 			</p:calendar>
-			
 			<br />
 			
 			
