@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="master.xhtml">
+
+	<ui:define name="title">
+        .:Registro del Proyecto:.
+    </ui:define>
+
+	<ui:define name="titleCont">
+		<span>Datos del proyecto</span>
+	</ui:define>
+
+	<ui:define name="content">
+
+		<h:form>
+
+
+			<h:outputLabel for="idProject" value="Código"
+				styleClass="control-label" />
+			<p:inputText autocomplete="off" id="idProject"
+				styleClass="form-control" value="#{projectController.i.idProject}"
+				required="true" />
+				
+				
+			<h:outputLabel for="nameProject" value="Nombre del proyecto"
+				styleClass="control-label" />
+				
+			<p:inputText autocomplete="off" id="nameProject"
+				styleClass="form-control" value="#{projectController.i.nameProject}"
+				maxlength="30" required="true" />
+				
+				
+			<h:outputLabel for="nameGroupProject" value="Nombre del grupo de proyecto"
+				styleClass="control-label" />
+				
+			<p:inputText autocomplete="off" id="nameGroupProject"
+				styleClass="form-control" value="#{projectController.i.nameGroupProject}"
+				maxlength="30" required="true" />
+
+
+			<h:outputLabel for="descriptionProject" value="Description del proyecto"
+				styleClass="control-label" />
+				
+			<p:inputText autocomplete="off" id="descriptionProject"
+				styleClass="form-control" value="#{projectController.i.descriptionProject}"
+				maxlength="30" required="true" />
+				
+				
+
+			<h:outputLabel for="costProject" value="Costo del proyecto"
+				styleClass="control-label" />
+				
+			<p:inputText autocomplete="off" id="costProject"
+				styleClass="form-control" value="#{projectController.i.costProject}"
+				maxlength="30" required="true" />
+
+			
+			<h:outputLabel for="startDateProject" value="Fecha de inicio del proyecto"
+				styleClass="control-label" />
+				
+			<h:outputLabel for="finishDateProject" value="Fecha de final del proyecto"
+				styleClass="control-label" />
+			
+			<p:commandButton value="Grabar"
+				actionListener="#{projectController.insert()}"
+				styleClass="btn btn-primary" update="@form"
+				action="listProject?faces-redirect=true"/>
+
+			<p:commandButton value="Cancelar"
+				action="listProject?faces-redirect=true" immediate="true"
+				styleClass="btn btn-default" ajax="false"/>
+				
+
+			<p:growl id="growl" sticky="true" showDetail="true" life="3000"/>
+
+		</h:form>
+	</ui:define>
+
+	<ui:define name="footerCont">
+
+	</ui:define>
+</ui:composition>
+</html>
