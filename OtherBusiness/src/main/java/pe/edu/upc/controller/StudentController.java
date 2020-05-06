@@ -85,6 +85,20 @@ public class StudentController implements Serializable {
 	public void cleanStudent() {
 	this.init();
 	}
+	
+	public String Modifpre(Student st) {
+		this.setI(st);
+		return "studentMod.xhtml";
+	}
+	public void modificar() {
+		try {
+			iService.modificar(this.i);
+			cleanStudent();
+			this.list();
+		}catch(Exception e) {
+			e.getMessage();
+			}
+	}
 
 	
 	

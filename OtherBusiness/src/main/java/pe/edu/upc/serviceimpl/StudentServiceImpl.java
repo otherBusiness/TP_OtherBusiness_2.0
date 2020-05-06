@@ -38,4 +38,10 @@ public class StudentServiceImpl implements IstudentService, Serializable {
 		return iD.list();
 	}
 
+	@Override
+	public void modificar(Student st) {
+		// TODO Auto-generated method stub
+		iD.modificar(st);
+	}
+
 }

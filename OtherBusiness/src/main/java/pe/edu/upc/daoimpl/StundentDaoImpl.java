@@ -41,5 +41,16 @@ public class StundentDaoImpl implements IstudentDao, Serializable {
 		}
 		return lista;
 	}
+	
+	@Transactional
+	@Override
+	public void modificar(Student st) {
+		// TODO Auto-generated method stub
+		try {
+			em.merge(st);
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
 
 }

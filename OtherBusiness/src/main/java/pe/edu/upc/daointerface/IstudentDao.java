@@ -8,4 +8,5 @@ public interface IstudentDao {
 
 	public void insert(Student student);
 	public List<Student> list();
+	public void modificar(Student st);
 }

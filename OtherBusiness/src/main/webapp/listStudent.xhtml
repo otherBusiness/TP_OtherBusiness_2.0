@@ -41,7 +41,12 @@
 							<p:column headerText="Campus" sortBy="#{stu.campus.nameCampus}">
 								<h:outputText value="#{stu.campus.nameCampus}" />
 							</p:column>
-							
+								<p:column headerText="Operación">
+
+								<h:commandLink value="Modificar" exportable="false"
+									action="#{studentController.Modifpre(stu)}"
+									style="color:red;" />
+							</p:column>
 						</p:dataTable>
 					</div>
 				</div>

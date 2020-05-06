@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="master.xhtml">
+
+	<ui:define name="title">
+        .:Registro del Estudiante:.
+    </ui:define>
+
+	<ui:define name="titleCont">
+		<span>Datos del estudiante</span>
+	</ui:define>
+
+	<ui:define name="content">
+
+		<h:form>
+
+
+			<h:outputLabel for="idStudent" value="Código"
+				styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="idStudent"
+				styleClass="form-control" value="#{studentController.i.idStudent}"
+				required="true" />
+			<h:outputLabel for="codeStudent" value="Código del Estudiante "
+				styleClass="control-label" />
+			<p:inputText autocomplete="off" id="codeStudent"
+				styleClass="form-control" value="#{studentController.i.codeStudent}"
+				maxlength="30" required="true" />
+			<h:outputLabel for="emailStudent" value="E-mail del Estudiante "
+				styleClass="control-label" />
+			<p:inputText autocomplete="off" id="emailStudent"
+				styleClass="form-control" value="#{studentController.i.emailStudent}"
+				maxlength="30" required="true" />
+				
+				<p:outputLabel for="cboCampus" value="Campus" />
+			<p:selectOneMenu id="cboCampus"
+				value="#{studentController.i.campus}"
+				converter="omnifaces.SelectItemsConverter">
+				<f:selectItems value="#{studentController.listaCampus}"
+					var="m" itemLabel="#{m.nameCampus}" itemValue="#{m}" />
+			</p:selectOneMenu>
+			<br />
+
+
+
+			<p:commandButton value="Grabar"
+				actionListener="#{studentController.modificar()}"
+				styleClass="btn btn-primary " update="@form"
+				action="listStudent?faces-redirect=true" />
+
+			<p:commandButton value="Cancelar"
+				action="listStudent?faces-redirect=true" immediate="true"
+				styleClass="btn btn-default" ajax="false" />
+
+			<p:growl id="growl" sticky="true" showDetail="true" life="3000" />
+
+		</h:form>
+	</ui:define>
+
+	<ui:define name="footerCont">
+
+	</ui:define>
+</ui:composition>
+</html>
+
