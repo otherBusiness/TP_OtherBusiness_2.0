@@ -7,6 +7,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.transaction.Transactional;
 
 import pe.edu.upc.daointerface.IprojectDao;
 import pe.edu.upc.entity.Project;
@@ -14,10 +15,10 @@ import pe.edu.upc.entity.Project;
 public class ProjectDaoImpl implements IprojectDao, Serializable {
 	
 	private static final long serialVersionUID = 1L;
-	@PersistenceContext(unitName = "Otherbusiness")
+	@PersistenceContext(unitName = "OtherBusiness")
 	private EntityManager em;
 	
-
+	@Transactional
 	@Override
 	public void insert(Project project) {
 		// manipular la data insert, modificacion a la BD
