@@ -7,7 +7,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -25,12 +24,11 @@ public class Users implements Serializable {
 	@Id//si
 	private int id;
 
+	
 	@OneToOne(cascade = CascadeType.ALL)
 	@MapsId
 	@JoinColumn(name = "idCustomer", nullable = false)
 	private Customer customer;
-	
-	
 	
 
 	@Column(name = "usernameUser", nullable = false, length = 30)
@@ -39,55 +37,64 @@ public class Users implements Serializable {
 	@Column(name = "passwordUser", nullable = false, length = 80)
 	private String passwordUser;
 	//
+	
+	@Column(name = "rol", nullable = false, length = 1)
+	private String rol;
 
-	//relacion mucho a uno
-	@ManyToOne
-	@JoinColumn(name = "idRol", nullable = false)
-	private Rol r;
-	//
 	public Users() {
 		super();
-		// TODO Auto-generated constructor stub contrusctor vacio
+		// TODO Auto-generated constructor stub
 	}
-	public Users(int id, Customer customer, String usernameUser, String passwordUser, Rol r) {
+
+	public Users(int id, Customer customer, String usernameUser, String passwordUser, String rol) {
 		super();
 		this.id = id;
 		this.customer = customer;
 		this.usernameUser = usernameUser;
 		this.passwordUser = passwordUser;
-		this.r = r;
+		this.rol = rol;
 	}
+
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
+
 	public Customer getCustomer() {
 		return customer;
 	}
+
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
+
 	public String getUsernameUser() {
 		return usernameUser;
 	}
+
 	public void setUsernameUser(String usernameUser) {
 		this.usernameUser = usernameUser;
 	}
+
 	public String getPasswordUser() {
 		return passwordUser;
 	}
+
 	public void setPasswordUser(String passwordUser) {
 		this.passwordUser = passwordUser;
 	}
-	public Rol getR() {
-		return r;
+
+	public String getRol() {
+		return rol;
 	}
-	public void setR(Rol r) {
-		this.r = r;
+
+	public void setRol(String rol) {
+		this.rol = rol;
 	}
-	
+
 	
 	
 	

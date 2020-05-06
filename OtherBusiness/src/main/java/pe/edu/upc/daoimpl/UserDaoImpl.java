@@ -3,13 +3,14 @@ package pe.edu.upc.daoimpl;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import javax.transaction.Transactional;
+import javax.persistence.TypedQuery;
 
 import pe.edu.upc.daointerface.IuserDao;
 import pe.edu.upc.entity.Users;
@@ -22,87 +23,78 @@ public class UserDaoImpl implements IuserDao, Serializable {
 	@PersistenceContext(unitName = "OtherBusiness")
 	private EntityManager em;
 
-	@Transactional
 	@Override
-	public void insert(Users user) {
-		try {
-			
+	public Integer insert(Users t) throws Exception {
+		em.persist(t);
+		return t.getCustomer().getIdCustomer();//.getId();
+	}
 
-			em.persist(user);
+	@Override
+	public Integer update(Users t) throws Exception {
+		em.merge(t);
+		return t.getCustomer().getIdCustomer();
+	}
 
-		} catch (Exception e) {
-			System.out.println("Error al crear nuevo usuario ");
-		}
+	@Override
+	public Integer delete(Users t) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Users> list() {
-		List<Users> lista = new ArrayList<Users>();
-		try {
+	public List<Users> findAll() throws Exception {
+		List<Users> users = new ArrayList<>();
 
-			Query q = em.createQuery("select i from Users i");
-			lista = (List<Users>) q.getResultList();
+		Query query = em.createQuery("SELECT c FROM User c");
+		users = (List<Users>) query.getResultList();
 
-		} catch (Exception e) {
-			System.out.println("Error al listar nuevo usuario");
-		}
-
-		return lista;
+		return users;
 	}
-	
-	@Transactional
+
 	@Override
-	public void delete(int idUser) 
-	{
-		// TODO Auto-generated method stub
-		Users u=new Users();
-		try {
-			u=em.getReference(Users.class, idUser);
-			em.remove(u);
-		} catch (Exception e) {
-			// TODO: handle exception
-			System.out.println(e.getMessage());
-		}
-		
-		
+	public Optional<Users> findById(Users t) throws Exception {
+
+		Users user;
+		TypedQuery<Users> query = em.createQuery("SELECT u FROM User u WHERE u.id = ?1", Users.class);
+		query.setParameter(1, t.getCustomer().getIdCustomer());
+
+		user = query.getSingleResult();
+
+		return Optional.of(user);
 	}
 
-	@Transactional  //permite modificar la base de datos
 	@Override
-	public void modificar(Users u) {
-		// TODO Auto-generated method stub
-		try {
-			em.merge(u);
-		} catch (Exception e) {
-			// TODO: handle exception
-			System.out.println(e.getMessage());
+	public String getPassworHashedByUserName(String username) throws Exception {
+		Users user = new Users();
 
+		try {
+
+			Query query = em.createQuery("FROM User u WHERE u.username = ?1");
+			query.setParameter(1, username);
+			@SuppressWarnings("unchecked")
+			List<Users> lista = query.getResultList();
+			if (!lista.isEmpty()) {
+				user = lista.get(0);
+			}
+		} catch (Exception e) {
+			throw e;
 		}
+
+		return user != null ? user.getPasswordUser() : ""; //.getPassword()
 	}
 
-	//buscarXname
-	@SuppressWarnings("unchecked")
 	@Override
-	public List<Users> finByNameUsers(Users u){
-		List<Users> lista = new ArrayList<Users>();
-		try {
-			Query q = em.createQuery("from Users i where i.usernameUser like ?1");////--------------------------
-			q.setParameter(1, "%" + u.getUsernameUser()+ "%");//.getDescriptionInfectiousAgents() + "%");
-			lista = (List<Users>) q.getResultList();
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
-		return lista;
+	public Optional<Users> findUserByUsername(Users user) throws Exception {
 		
+		Users userFound;
+		TypedQuery<Users> query = em.createQuery("FROM User u WHERE u.username = ?1 and u.password = ?2", Users.class);
+		query.setParameter(1, user.getUsernameUser());
+		query.setParameter(2, user.getPasswordUser());
+
+		userFound = query.getSingleResult();
+
+		return Optional.of(userFound);
 	}
-	
-	/*
-	 * @SuppressWarnings("unchecked")
-	 * 
-	 * @Override public List<Users> findAll() throws Exception {
-	 * 
-	 * }
-	 */
 
 }

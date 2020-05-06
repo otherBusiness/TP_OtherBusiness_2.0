@@ -17,7 +17,7 @@
 		<class>pe.edu.upc.entity.Rol</class>
 		<class>pe.edu.upc.entity.Users</class>
 		<class>pe.edu.upc.entity.Customer</class>
-
+		<class>pe.edu.upc.entity.UserRol</class>
 
 		<!-- … FIN __ aqui las clases creadas de entity __________________________… -->
 		<properties>
