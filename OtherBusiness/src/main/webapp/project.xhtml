@@ -48,23 +48,40 @@
 				
 			<p:inputText autocomplete="off" id="descriptionProject"
 				styleClass="form-control" value="#{projectController.i.descriptionProject}"
-				maxlength="30" required="true" />
+				maxlength="30" required="true"/>
 				
 				
 
 			<h:outputLabel for="costProject" value="Costo del proyecto"
-				styleClass="control-label" />
+				styleClass="control-label"/>
 				
 			<p:inputText autocomplete="off" id="costProject"
 				styleClass="form-control" value="#{projectController.i.costProject}"
-				maxlength="30" required="true" />
+				maxlength="30" required="true"/>
 
+			
 			
 			<h:outputLabel for="startDateProject" value="Fecha de inicio del proyecto"
 				styleClass="control-label" />
-				
-			<h:outputLabel for="finishDateProject" value="Fecha de final del proyecto"
+			
+			<p:calendar id="startDateProject" pattern="dd/MM/yyyy"
+				value="#{projectController.i.startDateProject}"
+				showOn="button" timeZone="UTC" required="true">
+			</p:calendar>
+			
+			<br />
+			
+			<h:outputLabel for="finishDateProject" value="Fecha de fin del proyecto"
 				styleClass="control-label" />
+					
+			<p:calendar id="finishDateProject" pattern="dd/MM/yyyy"
+				value="#{projectController.i.finishDateProject}"
+				showOn="button" timeZone="UTC" required="true">
+			</p:calendar>
+			
+			<br />
+			
+			
 			
 			<p:commandButton value="Grabar"
 				actionListener="#{projectController.insert()}"
