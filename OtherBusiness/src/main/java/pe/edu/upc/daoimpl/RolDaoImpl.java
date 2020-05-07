@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -17,7 +16,7 @@ import pe.edu.upc.entity.UserRol;
 import pe.edu.upc.entity.Users;
 
 @Named
-@RequestScoped
+//@RequestScoped
 public class RolDaoImpl implements IrolDao, Serializable {
 	private static final long serialVersionUID = 1L;
 
