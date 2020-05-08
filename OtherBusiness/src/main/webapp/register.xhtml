@@ -62,16 +62,16 @@
 				<h:column />
 				<h:column />
 
-				<p:outputLabel for="txtUser" value="Usuario" />                           <!--/ya edite-->
+				<p:outputLabel for="txtUser" value="Usuario" />
 				<p:inputText id="txtUser"
-					value="#{registerController.user.usernameUser}" required="true"    
-					styleClass="form-control" />                                             <!--/user.username -->
-				<p:message for="txtUser" display="text" />                
+					value="#{registerController.user.username}" required="true"
+					styleClass="form-control" />
+				<p:message for="txtUser" display="text" />
 				<h:column />
 
-				<p:outputLabel for="txtPassword1" value="Contraseña :" />                       <!--/user.password -->
+				<p:outputLabel for="txtPassword1" value="Contraseña :" />
 				<p:password id="txtPassword1"
-					value="#{registerController.user.passwordUser}" match="txtPassword2"
+					value="#{registerController.user.password}" match="txtPassword2"
 					label="Password 1" required="true"
 					validatorMessage="Contraseñas no coinciden"
 					styleClass="form-control" />
@@ -79,10 +79,9 @@
 				<h:column />
 
 				<p:outputLabel for="txtPassword2"
-					value="Escriba nuevamente su contraseña:" />                          <!--					value="#{registerController.user.password}" label="Password 2"
- -->             
+					value="Escriba nuevamente su contraseña:" />
 				<p:password id="txtPassword2"
-					value="#{registerController.user.passwordUser}" label="Password 2"
+					value="#{registerController.user.password}" label="Password 2"
 					required="true" styleClass="form-control" />
 				<h:column />
 				<h:column />

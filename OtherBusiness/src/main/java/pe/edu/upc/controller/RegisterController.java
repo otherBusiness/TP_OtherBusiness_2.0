@@ -13,10 +13,9 @@ import org.mindrot.jbcrypt.BCrypt;
 
 import pe.edu.upc.entity.Customer;
 import pe.edu.upc.entity.Rol;
-import pe.edu.upc.entity.Users;
-
-import pe.edu.upc.serviceinterface.IcustomerService;
-import pe.edu.upc.serviceinterface.IrolServiceImpl;
+import pe.edu.upc.entity.User;
+import pe.edu.upc.serviceinterface.ICustomerService;
+import pe.edu.upc.serviceinterface.IRolService;
 
 @Named
 @ViewScoped
@@ -24,30 +23,28 @@ public class RegisterController implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	@Inject 
-	//private cS;
-	private IcustomerService cS;
+	@Inject
+	private ICustomerService cS;
 
-	@Inject 
-	
-    private IrolServiceImpl rS;
-	
+	@Inject
+	private IRolService rS;
+
 	private Customer customer;
-	private Users user;
+	private User user;
 
 	@PostConstruct
 	public void init() {
 		this.customer = new Customer();
-		this.user = new Users();
+		this.user = new User();
 	}
 
 	public String registerUser() {
 		String redirect = null;
 		try {
-			String password = this.user.getPasswordUser();
+			String password = this.user.getPassword();
 			String passwordHash = BCrypt.hashpw(password, BCrypt.gensalt());
-			this.user.setPasswordUser(passwordHash);
-			this.user.setRol("A");//.setR("A");//.setState("A");//
+			this.user.setPassword(passwordHash);
+			this.user.setState("A");
 			this.customer.setUser(user);
 			this.user.setCustomer(customer);
 			this.cS.insert(customer);
@@ -55,7 +52,7 @@ public class RegisterController implements Serializable {
 			List<Rol> roles = new ArrayList<Rol>();
 			int TIPO_USUARIO = 1;
 			Rol r = new Rol();
-			r.setIdRol(TIPO_USUARIO);
+			r.setId(TIPO_USUARIO);
 			roles.add(r);
 			rS.assignRolesToUser(user, roles);
 			redirect = "index?faces-redirect=true";
@@ -74,11 +71,11 @@ public class RegisterController implements Serializable {
 		this.customer = customer;
 	}
 
-	public Users getUser() {
+	public User getUser() {
 		return user;
 	}
 
-	public void setUser(Users user) {
+	public void setUser(User user) {
 		this.user = user;
 	}
 

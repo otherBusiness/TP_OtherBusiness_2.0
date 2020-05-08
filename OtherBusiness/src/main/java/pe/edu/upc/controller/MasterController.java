@@ -1,5 +1,6 @@
 package pe.edu.upc.controller;
 
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -8,23 +9,25 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import pe.edu.upc.entity.User;
 import pe.edu.upc.entity.UserRol;
-import pe.edu.upc.entity.Users;
-import pe.edu.upc.serviceinterface.IrolServiceImpl;
+import pe.edu.upc.serviceinterface.IRolService;
 
 @Named
 @ViewScoped
-public class MasterController implements Serializable{
-
+public class MasterController implements Serializable {
+	
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 1L;
-
 	@Inject
-	private IrolServiceImpl rS;
-		
+	private IRolService rS;
+
 	public void verificarSesion() {
 		try {
 			FacesContext context = FacesContext.getCurrentInstance();
-			Users us = (Users) context.getExternalContext().getSessionMap().get("user");
+			User us = (User) context.getExternalContext().getSessionMap().get("user");
 			
 			if(us == null) {
 				context.getExternalContext().redirect("index.xhtml");
@@ -42,10 +45,9 @@ public class MasterController implements Serializable{
 		}
 	}
 	
-	
 	public boolean verificarMenu(String viewId) throws Exception {
 		FacesContext context = FacesContext.getCurrentInstance();
-		Users us = (Users) context.getExternalContext().getSessionMap().get("user");
+		User us = (User) context.getExternalContext().getSessionMap().get("user");
 
 		List<UserRol> roles = rS.findUserRolesByUser(us);
 
@@ -73,8 +75,7 @@ public class MasterController implements Serializable{
 		int[] iarr = { 0 };
 		roles.forEach(r -> {
 			for (String x : arreglo) {
-				if (r.getRol().getNameR().equals(x))//.getType().equals(x)) 
-				{
+				if (r.getRol().getType().equals(x)) {
 					iarr[0]++;
 				}
 			}
@@ -87,9 +88,7 @@ public class MasterController implements Serializable{
 		return true;
 	}
 	
-
 	public void cerrarSesion() {
 		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
 	}
-	
 }

@@ -1,25 +1,27 @@
 package pe.edu.upc.serviceimpl;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import javax.enterprise.context.RequestScoped;
+
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.transaction.Transactional;
-import pe.edu.upc.daointerface.IrolDao;
+
+import pe.edu.upc.daointerface.IRolDao;
 import pe.edu.upc.entity.Rol;
+import pe.edu.upc.entity.User;
 import pe.edu.upc.entity.UserRol;
-import pe.edu.upc.entity.Users;
-import pe.edu.upc.serviceinterface.IrolServiceImpl;
+import pe.edu.upc.serviceinterface.IRolService;
 
 @Named
-@RequestScoped
-public class RolServiceImpl implements IrolServiceImpl, Serializable {
+public class RolServiceImpl implements IRolService, Serializable {
+
 	private static final long serialVersionUID = 1L;
 
 	@Inject
-	private IrolDao rD;
+	private IRolDao rD;
 
 	@Transactional
 	@Override
@@ -51,7 +53,7 @@ public class RolServiceImpl implements IrolServiceImpl, Serializable {
 
 	@Transactional
 	@Override
-	public Integer assignRolesToUser(Users user, List<Rol> roles) throws Exception {
+	public Integer assignRolesToUser(User user, List<Rol> roles) throws Exception {
 		List<UserRol> userRoles = new ArrayList<>();
 
 		roles.forEach(rol -> {
@@ -67,9 +69,8 @@ public class RolServiceImpl implements IrolServiceImpl, Serializable {
 	}
 
 	@Override
-	public List<UserRol> findUserRolesByUser(Users user) throws Exception {
+	public List<UserRol> findUserRolesByUser(User user) throws Exception {
 		return rD.findUserRolesByUser(user);
 	}
-
 
 }

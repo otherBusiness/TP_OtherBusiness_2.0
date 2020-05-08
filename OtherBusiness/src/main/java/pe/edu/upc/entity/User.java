@@ -13,19 +13,26 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "users")
-public class Users implements Serializable {
+public class User implements Serializable {
+
 	private static final long serialVersionUID = 1L;
 
-	//--------------------------falta de customer
-	@Id//si
+	@Id
 	private int id;
-//PK NO TOCAR
-	
+
 	@OneToOne(cascade = CascadeType.ALL)
 	@MapsId
 	@JoinColumn(name = "id", nullable = false)
 	private Customer customer;
-//FK DE CUSTOMER	
+
+	@Column(name = "username", nullable = false, length = 30)
+	private String username;
+
+	@Column(name = "password", nullable = false, length = 80)
+	private String password;
+
+	@Column(name = "state", nullable = false, length = 1)
+	private String state;
 
 	public int getId() {
 		return id;
@@ -43,41 +50,28 @@ public class Users implements Serializable {
 		this.customer = customer;
 	}
 
-	public String getUsernameUser() {
-		return usernameUser;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setUsernameUser(String usernameUser) {
-		this.usernameUser = usernameUser;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
-	public String getPasswordUser() {
-		return passwordUser;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setPasswordUser(String passwordUser) {
-		this.passwordUser = passwordUser;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
-	public String getRol() {
-		return rol;
+	public String getState() {
+		return state;
 	}
 
-	public void setRol(String rol) {
-		this.rol = rol;
+	public void setState(String state) {
+		this.state = state;
 	}
 
-	@Column(name = "usernameUser", nullable = false, length = 30)
-	private String usernameUser;
-
-	@Column(name = "passwordUser", nullable = false, length = 80)
-	private String passwordUser;
-	//
-	
-	@Column(name = "rol", nullable = false, length = 1)
-	private String rol;
-
-	
-	
-	
 }

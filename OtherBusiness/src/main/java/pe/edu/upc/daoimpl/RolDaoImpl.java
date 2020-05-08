@@ -10,14 +10,14 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import pe.edu.upc.daointerface.IrolDao;
+import pe.edu.upc.daointerface.IRolDao;
 import pe.edu.upc.entity.Rol;
+import pe.edu.upc.entity.User;
 import pe.edu.upc.entity.UserRol;
-import pe.edu.upc.entity.Users;
 
 @Named
-//@RequestScoped
-public class RolDaoImpl implements IrolDao, Serializable {
+public class RolDaoImpl implements IRolDao, Serializable {
+
 	private static final long serialVersionUID = 1L;
 
 	@PersistenceContext(unitName = "OtherBusiness")
@@ -25,12 +25,12 @@ public class RolDaoImpl implements IrolDao, Serializable {
 
 	public Integer insert(Rol t) throws Exception {
 		em.persist(t);
-		return t.getIdRol();//.getId();
+		return t.getId();
 	}
 
 	public Integer update(Rol t) throws Exception {
 		em.merge(t);
-		return t.getIdRol();
+		return t.getId();
 	}
 
 	public Integer delete(Rol t) throws Exception {
@@ -53,7 +53,7 @@ public class RolDaoImpl implements IrolDao, Serializable {
 		Rol rol = new Rol();
 		List<Rol> roles = new ArrayList<Rol>();
 		Query query = em.createQuery("FROM Rol r where r.id = ?1");
-		query.setParameter(1, t.getIdRol());
+		query.setParameter(1, t.getId());
 
 		roles = (List<Rol>) query.getResultList();
 
@@ -83,12 +83,12 @@ public class RolDaoImpl implements IrolDao, Serializable {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<UserRol> findUserRolesByUser(Users user) throws Exception {
+	public List<UserRol> findUserRolesByUser(User user) throws Exception {
 		List<UserRol> userRoles = new ArrayList<UserRol>();
 
 		try {
 			Query query = em.createQuery("FROM UserRol ur where ur.user.customer.id =?1");
-			query.setParameter(1, user.getCustomer().getId());//.getId());
+			query.setParameter(1, user.getCustomer().getId());
 
 			userRoles = (List<UserRol>) query.getResultList();
 
@@ -99,5 +99,4 @@ public class RolDaoImpl implements IrolDao, Serializable {
 		return userRoles;
 	}
 
-	
 }

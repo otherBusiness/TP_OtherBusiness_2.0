@@ -10,7 +10,7 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import pe.edu.upc.entity.Users;
+import pe.edu.upc.entity.User;
 import pe.edu.upc.serviceimpl.UserServiceImpl;
 
 @Named
@@ -22,20 +22,20 @@ public class LoginController implements Serializable {
 	@Inject
 	private UserServiceImpl uS;
 
-	private Users user;
+	private User user;
 
 	@PostConstruct
 	public void init() {
-		this.user = new Users();
+		this.user = new User();
 	}
 
 	public String authentication() {
 		String redirect = null;
 
 		try {
-			Optional<Users> userFound = this.uS.authentication(user);
+			Optional<User> userFound = this.uS.authentication(user);
 
-			if (userFound.isPresent() && userFound.get().getRol().equalsIgnoreCase("A")) {
+			if (userFound.isPresent() && userFound.get().getState().equalsIgnoreCase("A")) {
 				// Almacenar en la sesi�n de JSF
 				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("user", userFound.get());
 				redirect = "/panel?faces-redirect=true";
@@ -50,11 +50,11 @@ public class LoginController implements Serializable {
 		return redirect;
 	}
 
-	public Users getUser() {
+	public User getUser() {
 		return user;
 	}
 
-	public void setUser(Users user) {
+	public void setUser(User user) {
 		this.user = user;
 	}
 

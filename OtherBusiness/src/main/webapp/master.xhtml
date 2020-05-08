@@ -5,14 +5,13 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
+
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<meta charset="utf-8" />
 	<title><ui:insert name="title"></ui:insert></title>
 	<meta name="generator" content="Bootply" />
 	<meta name="viewport"
 		content="width=device-width, initial-scale=1, maximum-scale=1" />
-
-
 	<link
 		href='https://fonts.googleapis.com/css?family=Roboto:400,300,500|Ubuntu+Condensed'
 		rel='stylesheet' type='text/css' />
@@ -23,6 +22,8 @@
 	<h:outputStylesheet name="css/main_base.css" />
 	<h:outputStylesheet name="css/font_ico.css" />
 	<ui:insert name="headCont"></ui:insert>
+	<f:event listener="#{masterController.verificarSesion()}"
+		type="preRenderView" />
 </h:head>
 <h:body>
 	<nav class="navbar navbar-default navbar-fixed-top base_primary"
@@ -49,7 +50,7 @@
 			<!--left-->
 			<div class="col-md-3" id="leftCol">
 				<ul class="nav nav-stacked" id="sidebar">
-					<li id="sidebar-1"><a href="panel.xhtml"><i
+						<li id="sidebar-1"><a href="panel.xhtml"><i
 							class="icon-home"></i> Inicio</a></li>
 					<li id="sidebar-2"><a href="listProject.xhtml"><i
 							class="icon-home"></i>Lista de Proyecto</a></li>
@@ -60,10 +61,11 @@
 					<li id="sidebar-2"><a href="listStudent.xhtml"><i
 							class="icon-user"></i>roles</a></li>		
 					<li id="sidebar-2"><a href="listStudent.xhtml"><i
-							class="icon-user"></i>Lista de inversores</a></li>
-				   <li id="sidebar-2"><p:link value="Cerrar Sesión"
+							class="icon-user"></i>Lista de inversores</a></li>		
+					<li id="sidebar-2"><p:link value="Cerrar Sesión"
 							actionListener="#{masterController.cerrarSesion()}"
 							href="index.xhtml" /></li>
+
 				</ul>
 			</div>
 			<!--/left-->
@@ -71,7 +73,7 @@
 			<!--right-->
 			<div class="col-md-9" style="padding-right: 30px">
 				<h2 id="sec0" class="title-style">
-					<ui:insert name="titleCont">Titulo del grupo</ui:insert>
+					<ui:insert name="titleCont">Titulo</ui:insert>
 				</h2>
 				<!-- seccion para el contenido -->
 				<ui:insert name="content">

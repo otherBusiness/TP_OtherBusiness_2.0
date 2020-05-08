@@ -1,7 +1,9 @@
+
 <ui:composition template="master.xhtml"
 	xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 
@@ -14,9 +16,12 @@
 	</ui:define>
 
 	<ui:define name="content">
-		<h:form>
-			<p align="center" class="title-style">Trabajo Parcial de Programación en Web</p>
-			<div align="center"></div>
+		<h:form id="frm">
+			<p align="center"  class="title-style">Programación en Web</p>
+				<div align="center">
+				<h:graphicImage value="/resources/img/index.jpg" height="50%"
+					width="50%"></h:graphicImage>
+			</div>
 		</h:form>
 	</ui:define>
 

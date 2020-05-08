@@ -10,44 +10,32 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Rol")
+@Table(name = "roles")
 public class Rol implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idRol;
+	private int id;
 
-	@Column(name = "nameR")
-	private String nameR;
+	@Column(name = "type")
+	private String type;
 
-	public Rol() {
-		super();
-		// TODO Auto-generated constructor stub
+	public int getId() {
+		return id;
 	}
 
-	public Rol(int idRol, String nameR) {
-		super();
-		this.idRol = idRol;
-		this.nameR = nameR;
-	}
-	
-			public int getIdRol() {
-		return idRol;
+	public void setId(int id) {
+		this.id = id;
 	}
 
-	public void setIdRol(int idRol) {
-		this.idRol = idRol;
+	public String getType() {
+		return type;
 	}
 
-	public String getNameR() {
-		return nameR;
+	public void setType(String type) {
+		this.type = type;
 	}
 
-	public void setNameR(String nameR) {
-		this.nameR = nameR;
-	}
-
-	
 }

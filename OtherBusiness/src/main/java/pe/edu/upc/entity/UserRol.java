@@ -12,58 +12,44 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "user_roles")
-public class UserRol  implements Serializable{
-private static final long serialVersionUID = 1L;
+public class UserRol implements Serializable {
 
-@Id
-@GeneratedValue(strategy = GenerationType.IDENTITY)
-private int id;
+	private static final long serialVersionUID = 1L;
 
-@ManyToOne
-@JoinColumn(name = "user_id", nullable = false)
-private Users user;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
 
-@ManyToOne
-@JoinColumn(name = "rol_id", nullable = false)
-private Rol rol;
+	@ManyToOne
+	@JoinColumn(name = "user_id", nullable = false)
+	private User user;
 
-public UserRol() {
-	super();
-	// TODO Auto-generated constructor stub
-}
+	@ManyToOne
+	@JoinColumn(name = "rol_id", nullable = false)
+	private Rol rol;
 
-public UserRol(int id, Users user, Rol rol) {
-	super();
-	this.id = id;
-	this.user = user;
-	this.rol = rol;
-}
+	public int getId() {
+		return id;
+	}
 
-public int getId() {
-	return id;
-}
+	public void setId(int id) {
+		this.id = id;
+	}
 
-public void setId(int id) {
-	this.id = id;
-}
+	public User getUser() {
+		return user;
+	}
 
-public Users getUser() {
-	return user;
-}
+	public void setUser(User user) {
+		this.user = user;
+	}
 
-public void setUser(Users user) {
-	this.user = user;
-}
+	public Rol getRol() {
+		return rol;
+	}
 
-public Rol getRol() {
-	return rol;
-}
-
-public void setRol(Rol rol) {
-	this.rol = rol;
-}
-
-
-
+	public void setRol(Rol rol) {
+		this.rol = rol;
+	}
 
 }

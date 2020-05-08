@@ -4,65 +4,64 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Optional;
 
-import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.transaction.Transactional;
 
 import org.mindrot.jbcrypt.BCrypt;
 
-import pe.edu.upc.daointerface.IuserDao;
-import pe.edu.upc.entity.Users;
-import pe.edu.upc.serviceinterface.IuserService;
+import pe.edu.upc.daointerface.IUserDao;
+import pe.edu.upc.entity.User;
+import pe.edu.upc.serviceinterface.IUserService;
 
 @Named
-@RequestScoped
-public class UserServiceImpl implements IuserService, Serializable {
+public class UserServiceImpl implements IUserService, Serializable {
+
 	private static final long serialVersionUID = 1L;
 
-	@Inject /* inyeccion de dependencia */
-	private IuserDao uD;
+	@Inject
+	private IUserDao uD;
 
 	@Transactional
 	@Override
-	public Integer insert(Users t) throws Exception {
+	public Integer insert(User t) throws Exception {
 		return uD.insert(t);
 	}
 
 	@Transactional
 	@Override
-	public Integer update(Users t) throws Exception {
+	public Integer update(User t) throws Exception {
 		return uD.update(t);
 	}
 
 	@Transactional
 	@Override
-	public Integer delete(Users t) throws Exception {
+	public Integer delete(User t) throws Exception {
 		return uD.delete(t);
 	}
 
 	@Override
-	public List<Users> getAll() throws Exception {
+	public List<User> getAll() throws Exception {
 		return uD.findAll();
 	}
 
 	@Override
-	public Optional<Users> getOne(Users t) throws Exception {
+	public Optional<User> getOne(User t) throws Exception {
 		return uD.findById(t);
 	}
 
 	@Override
-	public Optional<Users> authentication(Users user) throws Exception {
-		String password = user.getPasswordUser();
+	public Optional<User> authentication(User user) throws Exception {
+		String password = user.getPassword();
 
-		String passwordHash = uD.getPassworHashedByUserName(user.getUsernameUser());//.getUsername()
+		String passwordHash = uD.getPassworHashedByUserName(user.getUsername());
 
 		if (BCrypt.checkpw(password, passwordHash)) {
-			user.setPasswordUser(passwordHash);
+			user.setPassword(passwordHash);
 			return uD.findUserByUsername(user);
 		}
 
-		return Optional.of(new Users());
+		return Optional.of(new User());
 	}
 
 }

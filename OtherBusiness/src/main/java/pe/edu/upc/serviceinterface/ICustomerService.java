@@ -5,7 +5,7 @@ import java.util.Optional;
 
 import pe.edu.upc.entity.Customer;
 
-public interface IcustomerService {
+public interface ICustomerService {
 	Integer insert(Customer customer) throws Exception;
 
 	Integer update(Customer customer) throws Exception;
@@ -19,5 +19,5 @@ public interface IcustomerService {
 	List<Customer> findCustomerByName(String name) throws Exception;
 
 	Optional<Customer> findCustomerByDni(String dni) throws Exception;
-}
 
+}

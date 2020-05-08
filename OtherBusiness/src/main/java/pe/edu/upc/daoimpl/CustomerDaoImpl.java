@@ -11,11 +11,11 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
-import pe.edu.upc.daointerface.IcustomerDao;
+import pe.edu.upc.daointerface.ICustomerDao;
 import pe.edu.upc.entity.Customer;
 
 @Named
-public class CustomerDaoImpl implements IcustomerDao, Serializable {
+public class CustomerDaoImpl implements ICustomerDao, Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@PersistenceContext(unitName = "OtherBusiness")
@@ -23,7 +23,7 @@ public class CustomerDaoImpl implements IcustomerDao, Serializable {
 
 	public Integer insert(Customer t) throws Exception {
 		em.persist(t);
-		return t.getId();//.getId();
+		return t.getId();
 	}
 
 	public Integer update(Customer t) throws Exception {
@@ -45,7 +45,6 @@ public class CustomerDaoImpl implements IcustomerDao, Serializable {
 		return customers;
 	}
 
-	
 	@SuppressWarnings("unchecked")
 	public Optional<Customer> findById(Customer t) throws Exception {
 

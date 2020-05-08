@@ -8,23 +8,22 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.transaction.Transactional;
 
-import pe.edu.upc.daointerface.IcustomerDao;
+import pe.edu.upc.daointerface.ICustomerDao;
 import pe.edu.upc.entity.Customer;
-import pe.edu.upc.serviceinterface.IcustomerService;
+import pe.edu.upc.serviceinterface.ICustomerService;
 
 @Named
-public class CustomerServiceImpl implements IcustomerService, Serializable {
+public class CustomerServiceImpl implements ICustomerService, Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Inject
-	private IcustomerDao cD;
+	private ICustomerDao cD;
 
 	@Transactional
 	@Override
 	public Integer insert(Customer t) throws Exception {
 		return cD.insert(t);
 	}
-	
 
 	@Transactional
 	@Override

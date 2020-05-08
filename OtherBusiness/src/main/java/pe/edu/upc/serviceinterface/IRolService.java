@@ -4,15 +4,10 @@ import java.util.List;
 import java.util.Optional;
 
 import pe.edu.upc.entity.Rol;
-import pe.edu.upc.entity.Users;
+import pe.edu.upc.entity.User;
 import pe.edu.upc.entity.UserRol;
 
-public interface IrolServiceImpl {
-
-	
-	//public void insert(Rol rol);
-	//public List<Rol>list();
-	
+public interface IRolService {
 	Integer insert(Rol rol) throws Exception;
 
 	Integer update(Rol rol) throws Exception;
@@ -23,8 +18,9 @@ public interface IrolServiceImpl {
 
 	Optional<Rol> getOne(Rol rol) throws Exception;
 
-	Integer assignRolesToUser(Users user, List<Rol> roles) throws Exception;
+	Integer assignRolesToUser(User user, List<Rol> roles) throws Exception;
 
-	List<UserRol> findUserRolesByUser(Users user) throws Exception;
+	List<UserRol> findUserRolesByUser(User user) throws Exception;
+
 }
 

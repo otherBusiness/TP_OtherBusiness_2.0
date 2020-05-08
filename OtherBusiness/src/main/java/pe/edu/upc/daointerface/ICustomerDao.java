@@ -5,7 +5,7 @@ import java.util.Optional;
 
 import pe.edu.upc.entity.Customer;
 
-public interface IcustomerDao {
+public interface ICustomerDao {
 	Integer insert(Customer customer) throws Exception;
 
 	Integer update(Customer customer) throws Exception;
@@ -19,5 +19,4 @@ public interface IcustomerDao {
 	List<Customer> findByName(String name) throws Exception;
 
 	Optional<Customer> findByDni(String dni) throws Exception;
-	
 }
