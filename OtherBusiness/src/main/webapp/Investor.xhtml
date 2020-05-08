@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="master.xhtml">
+
+	<ui:define name="title">
+        .:Registro de Inversors:.
+    </ui:define>
+
+	<ui:define name="titleCont">
+		<span>Inversor</span>
+	</ui:define>
+
+	<ui:define name="content">
+
+		<h:form>
+
+
+			<h:outputLabel for="idInvestor" value="Código"
+				styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="idInvestor"
+				styleClass="form-control" value="#{investorController.i.idInvestor}"
+				required="true" />
+
+			<h:outputLabel for="rucInvestor" value="RUC del inversor "
+				styleClass="control-label" />
+			<p:inputText autocomplete="off" id="rucInvestor"
+				styleClass="form-control" value="#{investorController.i.rucInvestor}"
+				maxlength="30" required="true" />
+
+			<h:outputLabel for="countrInvestor" value="Ciudad del inversor"
+				styleClass="control-label" />
+			<p:inputText autocomplete="off" id="countrInvestor"
+				styleClass="form-control"
+				value="#{investorController.i.countrInvestor}" maxlength="30"
+				required="true" />
+				
+				<h:outputLabel for="districtInvestor" value="Distrito del inversor"
+				styleClass="control-label" />
+			<p:inputText autocomplete="off" id="districtInvestor"
+				styleClass="form-control"
+				value="#{investorController.i.districtInvestor}" maxlength="30"
+				required="true" />
+				
+				<h:outputLabel for="emailInvestor" value="Email del inversor"
+				styleClass="control-label" />
+			<p:inputText autocomplete="off" id="emailInvestor"
+				styleClass="form-control"
+				value="#{investorController.i.emailInvestor}" maxlength="30"
+				required="true" />
+				
+			<br />
+			<p:commandButton value="Grabar"
+				actionListener="#{investorController.insert()}"
+				styleClass="btn btn-primary " update="@form"
+				action="listInvestor?faces-redirect=true" />
+			<p:commandButton value="Cancelar"
+				action="listInvestor?faces-redirect=true" immediate="true"
+				styleClass="btn btn-default" ajax="false" />
+			<p:growl id="growl" sticky="true" showDetail="true" life="3000" />
+
+		</h:form>
+	</ui:define>
+
+	<ui:define name="footerCont">
+
+	</ui:define>
+</ui:composition>
+</html>
