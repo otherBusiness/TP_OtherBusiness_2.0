@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -16,7 +15,7 @@ import pe.edu.upc.daointerface.IuserDao;
 import pe.edu.upc.entity.Users;
 
 @Named
-@RequestScoped
+//@RequestScoped
 public class UserDaoImpl implements IuserDao, Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -26,13 +25,13 @@ public class UserDaoImpl implements IuserDao, Serializable {
 	@Override
 	public Integer insert(Users t) throws Exception {
 		em.persist(t);
-		return t.getCustomer().getIdCustomer();//.getId();
+		return t.getCustomer().getId();//.getId();
 	}
 
 	@Override
 	public Integer update(Users t) throws Exception {
 		em.merge(t);
-		return t.getCustomer().getIdCustomer();
+		return t.getCustomer().getId();
 	}
 
 	@Override
@@ -46,7 +45,7 @@ public class UserDaoImpl implements IuserDao, Serializable {
 	public List<Users> findAll() throws Exception {
 		List<Users> users = new ArrayList<>();
 
-		Query query = em.createQuery("SELECT c FROM User c");
+		Query query = em.createQuery("SELECT c FROM Users c");////s                      //SELECT u FROM User u
 		users = (List<Users>) query.getResultList();
 
 		return users;
@@ -56,8 +55,8 @@ public class UserDaoImpl implements IuserDao, Serializable {
 	public Optional<Users> findById(Users t) throws Exception {
 
 		Users user;
-		TypedQuery<Users> query = em.createQuery("SELECT u FROM User u WHERE u.id = ?1", Users.class);
-		query.setParameter(1, t.getCustomer().getIdCustomer());
+		TypedQuery<Users> query = em.createQuery("SELECT u FROM Users u WHERE u.id = ?1", Users.class);//s     User
+		query.setParameter(1, t.getCustomer().getId());
 
 		user = query.getSingleResult();
 
@@ -70,7 +69,7 @@ public class UserDaoImpl implements IuserDao, Serializable {
 
 		try {
 
-			Query query = em.createQuery("FROM User u WHERE u.username = ?1");
+			Query query = em.createQuery("FROM Users u WHERE u.usernameUser = ?1");//s    - ---  username
 			query.setParameter(1, username);
 			@SuppressWarnings("unchecked")
 			List<Users> lista = query.getResultList();
@@ -88,7 +87,7 @@ public class UserDaoImpl implements IuserDao, Serializable {
 	public Optional<Users> findUserByUsername(Users user) throws Exception {
 		
 		Users userFound;
-		TypedQuery<Users> query = em.createQuery("FROM User u WHERE u.username = ?1 and u.password = ?2", Users.class);
+		TypedQuery<Users> query = em.createQuery("FROM Users u WHERE u.usernameUser = ?1 and u.passwordUser = ?2", Users.class);//user --- 
 		query.setParameter(1, user.getUsernameUser());
 		query.setParameter(2, user.getPasswordUser());
 

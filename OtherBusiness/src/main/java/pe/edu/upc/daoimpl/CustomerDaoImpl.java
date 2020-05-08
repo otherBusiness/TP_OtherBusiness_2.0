@@ -23,12 +23,12 @@ public class CustomerDaoImpl implements IcustomerDao, Serializable {
 
 	public Integer insert(Customer t) throws Exception {
 		em.persist(t);
-		return t.getIdCustomer();//.getId();
+		return t.getId();//.getId();
 	}
 
 	public Integer update(Customer t) throws Exception {
 		em.merge(t);
-		return t.getIdCustomer();
+		return t.getId();
 	}
 
 	public Integer delete(Customer t) throws Exception {
@@ -53,7 +53,7 @@ public class CustomerDaoImpl implements IcustomerDao, Serializable {
 
 		List<Customer> customers = new ArrayList<Customer>();
 		Query q = em.createQuery("FROM Customer c where c.id = ?1");
-		q.setParameter(1, t.getIdCustomer());
+		q.setParameter(1, t.getId());
 
 		customers = (List<Customer>) q.getResultList();
 

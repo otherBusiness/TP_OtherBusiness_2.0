@@ -88,7 +88,7 @@ public class RolDaoImpl implements IrolDao, Serializable {
 
 		try {
 			Query query = em.createQuery("FROM UserRol ur where ur.user.customer.id =?1");
-			query.setParameter(1, user.getCustomer().getIdCustomer());//.getId());
+			query.setParameter(1, user.getCustomer().getId());//.getId());
 
 			userRoles = (List<UserRol>) query.getResultList();
 

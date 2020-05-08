@@ -12,48 +12,20 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Users")
+@Table(name = "users")
 public class Users implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	//no
-//	@Id
-//	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	//private int idUser;
 	//--------------------------falta de customer
 	@Id//si
 	private int id;
-
+//PK NO TOCAR
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	@MapsId
-	@JoinColumn(name = "idCustomer", nullable = false)
+	@JoinColumn(name = "id", nullable = false)
 	private Customer customer;
-	
-
-	@Column(name = "usernameUser", nullable = false, length = 30)
-	private String usernameUser;
-
-	@Column(name = "passwordUser", nullable = false, length = 80)
-	private String passwordUser;
-	//
-	
-	@Column(name = "rol", nullable = false, length = 1)
-	private String rol;
-
-	public Users() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	public Users(int id, Customer customer, String usernameUser, String passwordUser, String rol) {
-		super();
-		this.id = id;
-		this.customer = customer;
-		this.usernameUser = usernameUser;
-		this.passwordUser = passwordUser;
-		this.rol = rol;
-	}
+//FK DE CUSTOMER	
 
 	public int getId() {
 		return id;
@@ -95,7 +67,16 @@ public class Users implements Serializable {
 		this.rol = rol;
 	}
 
+	@Column(name = "usernameUser", nullable = false, length = 30)
+	private String usernameUser;
+
+	@Column(name = "passwordUser", nullable = false, length = 80)
+	private String passwordUser;
+	//
 	
+	@Column(name = "rol", nullable = false, length = 1)
+	private String rol;
+
 	
 	
 	
